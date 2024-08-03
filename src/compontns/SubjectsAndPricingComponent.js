@@ -55,10 +55,13 @@ const SubjectsAndPricingComponent = () => {
   return (
     <div className="container-fluid">
       <div className="row row-Padding">
-        <div className="col-12 col-md-5 col-lg-5">
+        <div className="col-12 col-md-5 col-lg-5" data-aos="zoom-in">
           <img src={Man} alt="People" className="img-fluid" />
         </div>
-        <div className="col-12 col-md-7 col-lg-7 position-relative">
+        <div
+          className="col-12 col-md-7 col-lg-7 position-relative"
+          data-aos="zoom-in-up"
+        >
           <div>
             <h4>Subjects & Pricing</h4>
             <p>Lorem ipsum dolor sit amet consectetur. Amet.</p>
