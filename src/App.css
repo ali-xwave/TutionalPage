@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+.bg-color {
+  background-color: #bde4f8;
+  padding: 12px 0 61px 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Number img {
+  position: absolute;
+  top: 21.5%;
+  left: 20.5%;
+  width: 60%;
+  z-index: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.row-Padding {
+  padding-top: 100px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.Ellipse-style {
+  position: absolute;
+  top: 86%;
+  left: 0;
+  z-index: 2;
+}
+
+.column-bg {
+  background-color: #f1f7fa;
+  position: relative;
+  z-index: 3;
+}
+
+.btns button {
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #38b6ff;
   color: white;
+  z-index: 4;
 }
 
-.App-link {
-  color: #61dafb;
+.btns span {
+  padding-left: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.subject-btn {
+  background-color: #38b6ff;
+}
+
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select-container select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px;
+  width: 100%;
+}
+
+.select-container .fa-chevron-down {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  color: #555;
+  z-index: 5;
+}
+
+@media (max-width: 576px) {
+  .Number img {
+    position: absolute;
+    top: 8%;
+    left: 12.5%;
+    width: 80%;
   }
-  to {
-    transform: rotate(360deg);
+  .bg-color {
+    background-color: #bde4f8;
+    padding: 12px 0 31px 0;
+  }
+  .row-Padding {
+    padding-top: 50px;
   }
 }
