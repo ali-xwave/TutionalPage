@@ -1,11 +1,11 @@
 .bg-color {
   background-color: #bde4f8;
-  padding: 12px 0 51px 0;
+  padding: 12px 0 31px 0;
 }
 
 .Number img {
   position: absolute;
-  top: 400%;
+  top: 190%;
   left: 20.5%;
   width: 60%;
   z-index: 1;
@@ -35,6 +35,21 @@
   background-color: #38b6ff;
   color: white;
   z-index: 4;
+}
+
+/* SubjectsAndPricingComponent.css */
+
+.modal-content.custom-modal {
+  background-color: #f1f7fa; /* Set the background color of the modal */
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+.modal-footer .btn-secondary {
+  margin-right: auto; /* Pushes the Close button to the left */
 }
 
 .btns span {
