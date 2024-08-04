@@ -3,29 +3,19 @@ import Man from "../Images/Man.svg";
 import Round from "../Images/Ellipse.svg";
 import icon1 from "../Images/Left-icon.svg";
 import icon2 from "../Images/Right-icon.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const SubjectsAndPricingComponent = () => {
   const [selectedSubjects, setSelectedSubjects] = useState([]);
-  const subjects = [
-    "Physics - O Levels",
-    "Chemistry - O Levels",
-    "Biology - O Levels",
-    "Mathematics - O Levels",
-    "Computer Science - O Levels",
-  ];
-
-  const handleSelectChange = (event) => {
-    const selectedValue = event.target.value;
-    if (selectedValue && !selectedSubjects.includes(selectedValue)) {
-      setSelectedSubjects([selectedValue, ...selectedSubjects]);
-    }
-  };
+  const [newSubject, setNewSubject] = useState("");
+  const [showInput, setShowInput] = useState(false);
 
   const removeSubject = (subject) => {
     setSelectedSubjects(selectedSubjects.filter((item) => item !== subject));
   };
 
-  const [hours, setHours] = useState(""); // Default value
+  const [hours, setHours] = useState("");
 
   const handleChange = (event) => {
     setHours(event.target.value);
@@ -36,11 +26,11 @@ const SubjectsAndPricingComponent = () => {
     { code: "EUR", symbol: "€", name: "Euro" },
     { code: "INR", symbol: "₹", name: "Indian Rupee" },
     { code: "CNY", symbol: "¥", name: "Chinese Yuan" },
-    { code: "AED", symbol: "د.إ", name: "AED" }, // Added AED currency
+    { code: "AED", symbol: "د.إ", name: "AED" },
   ];
 
-  const [rate, setRate] = useState(""); // Default hourly rate
-  const [currency, setCurrency] = useState("AED"); // Default currency
+  const [rate, setRate] = useState("");
+  const [currency, setCurrency] = useState("AED");
 
   const handleRateChange = (event) => {
     setRate(event.target.value);
@@ -50,62 +40,69 @@ const SubjectsAndPricingComponent = () => {
     setCurrency(event.target.value);
   };
 
-  const currentCurrency = currencies.find((c) => c.code === currency);
+  const handleAddNewSubject = () => {
+    if (newSubject && !selectedSubjects.includes(newSubject)) {
+      setSelectedSubjects([newSubject, ...selectedSubjects]);
+      setNewSubject(""); // Clear the input field after adding
+      setShowInput(false); // Hide the input field after adding
+    }
+  };
 
   return (
     <div className="container-fluid">
       <div className="row row-Padding">
-        <div className="col-12 col-md-5 col-lg-5" data-aos="zoom-in">
+        <div className="col-12 col-md-5 col-lg-5" data-aos="zoom-in-right">
           <img src={Man} alt="People" className="img-fluid" />
         </div>
         <div
           className="col-12 col-md-7 col-lg-7 position-relative"
-          data-aos="zoom-in-up"
+          data-aos="fade-left"
         >
-          <div>
-            <h4>Subjects & Pricing</h4>
-            <p>Lorem ipsum dolor sit amet consectetur. Amet.</p>
-          </div>
+          <h4>Subjects & Pricing</h4>
+          <p>Lorem ipsum dolor sit amet consectetur. Amet.</p>
           <div className="column-bg rounded p-3">
-            <h5>Select Subjects</h5>
-            <div className="d-flex btns pb-2">
-              <button>
-                English - O Levels <span>x</span>
-              </button>
-              <button>
-                Arabic - O Levels <span>x</span>
-              </button>
-              <button>
-                Urdu - O Levels <span>x</span>
-              </button>
-            </div>
-            <div className="mb-1">
-              {selectedSubjects.map((subject, index) => (
-                <div
-                  key={index}
-                  className="subject-btn d-inline-flex align-items-center mx-1 mb-2 p-2 rounded"
-                >
-                  <span className="mx-1 text-white">{subject}</span>
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h5>Select Subjects</h5>
+              <div>
+                {showInput ? (
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter new subject"
+                      value={newSubject}
+                      onChange={(e) => setNewSubject(e.target.value)}
+                    />
+                    <button
+                      className="btn btn-outline-secondary"
+                      type="button"
+                      onClick={handleAddNewSubject}
+                    >
+                      Add
+                    </button>
+                  </div>
+                ) : (
                   <button
+                    className="btn btn-outline-secondary"
                     type="button"
-                    className="text-white border-0 subject-btn"
-                    onClick={() => removeSubject(subject)}
+                    onClick={() => setShowInput(true)}
                   >
-                    <span>&times;</span>
+                    <FontAwesomeIcon icon={faPlus} />
                   </button>
-                </div>
+                )}
+              </div>
+            </div>
+            <div className="d-flex btns pb-2">
+              {selectedSubjects.map((subject, index) => (
+                <button key={index}>
+                  {subject}{" "}
+                  <span onClick={() => removeSubject(subject)}>x</span>
+                </button>
               ))}
             </div>
             <h5>Select Curriculum</h5>
             <div className="form-group select-container">
-              <select className="form-control" onChange={handleSelectChange}>
-                <option value=""></option>
-                {subjects.map((subject, index) => (
-                  <option key={index} value={subject}>
-                    {subject}
-                  </option>
-                ))}
-              </select>
+              <select className="form-control"></select>
               <i className="fa fa-chevron-down"></i>
             </div>
             <div className="row">
@@ -151,12 +148,6 @@ const SubjectsAndPricingComponent = () => {
                       />
                     </div>
                   </div>
-                  {rate && currentCurrency && (
-                    <p className="mt-3">
-                      {currentCurrency.symbol}
-                      {rate} per hour
-                    </p>
-                  )}
                 </div>
               </div>
             </div>
